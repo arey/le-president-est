@@ -9,6 +9,18 @@
 <body>
 	<h1>Le Président est ...</h1>
 	<img  src="image/presidents.png"/>
+	 <% 
+        String comment = request.getParameter("user-comment");
+	 	if (comment==null) {
+	 		comment = "";
+	 	}
+     %>
+    <p>Vous: <%= comment %></p>
+	<form action="" method="post">
+	
+		<textarea name="user-comment"></textarea>
+		<input type="submit" value="C'est mon avis"/>
+	</form>
 
 </body>
 </html>
