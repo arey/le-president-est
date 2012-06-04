@@ -28,10 +28,10 @@
 		        	StoredComments.store(userComment, user.getNickname());
 		        }
 		        
-		        List<Entity> comments = StoredComments.retrieveAll();
-		        for (Entity comment : comments) {
+		        List<Comment> comments = StoredComments.retrieveAll();
+		        for (Comment comment : comments) {
 		        %>
-				    <%=comment.getProperty("user")%> : <%=comment.getProperty("text")%><br/>
+				    <%=comment.getUser()%> : <%=comment.getText()%><br/>
 		        <% } %>
 
 			<form action="" method="post">
