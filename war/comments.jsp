@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.google.appengine.api.datastore.*" %>
 <%@ page import="com.google.appengine.api.users.*" %>
+<%@ page import="com.moi.lepresident.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,12 +23,17 @@
 	   <% } else { %>
 		   
 			 <% 
-		        String comment = request.getParameter("user-comment");
-			 	if (comment==null) {
-			 		comment = "";
-			 	}
-		     %>
-		    <p><%=user.getNickname()%> : <%= comment %></p>
+		        String userComment = request.getParameter("user-comment");
+		        if (userComment!=null) {
+		        	StoredComments.store(userComment, user.getNickname());
+		        }
+		        
+		        List<Entity> comments = StoredComments.retrieveAll();
+		        for (Entity comment : comments) {
+		        %>
+				    <%=comment.getProperty("user")%> : <%=comment.getProperty("text")%><br/>
+		        <% } %>
+
 			<form action="" method="post">
 			
 				<textarea name="user-comment"></textarea>
