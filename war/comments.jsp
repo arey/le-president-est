@@ -12,8 +12,15 @@
 </head>
 <body>
 	<h1>Le Président est ...</h1>
-	<img  src="image/presidents.png"/>
+	<% President president = President.getPresident(); 
+	if (president != null) { %>
+		<img src="<%=president.image %>"/><br>
+		<h2><%=president.name %></h2>
+	<%  } else { %>
+	<img  src="image/presidents.png"/><br/>
+	<strong>Le président ne sera annoncé qu'à partir du workshop</strong><br/>
 	<br>
+	<%  }  %>
 
 	<% UserService userService = UserServiceFactory.getUserService();
 	   User user = userService.getCurrentUser();

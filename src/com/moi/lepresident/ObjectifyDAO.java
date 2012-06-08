@@ -7,6 +7,7 @@ public class ObjectifyDAO extends DAOBase {
 	
 	static {
 		 ObjectifyService.register(Comment.class);
+		 ObjectifyService.register(President.class);
 		
 	}
 
